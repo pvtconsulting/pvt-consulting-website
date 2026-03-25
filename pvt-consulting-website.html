@@ -734,7 +734,7 @@
                   <line x1="178" y1="18" x2="178" y2="112" stroke="#1e3a5f" stroke-width="1.5"/>
                   <text x="198" y="70" font-family="'Inter','SF Pro Display','Helvetica Neue',Arial,sans-serif" font-size="38" font-weight="800" fill="#f1f5f9" letter-spacing="5">CONSULTING</text>
                   <rect x="198" y="82" width="310" height="2.5" rx="1.25" fill="url(#navSky)"/>
-                  <text x="199" y="105" font-family="'Inter','SF Pro Display','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="300" fill="#475569" letter-spacing="4">STRATEGY · TECHNOLOGY · RESULTS</text>
+                  <text x="199" y="105" font-family="'Inter','SF Pro Display','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="300" fill="#475569" letter-spacing="4">STRATEGY Â· TECHNOLOGY Â· RESULTS</text>
                 </svg>
             </div>
             <nav>
@@ -768,7 +768,7 @@
             <p>Strategy. Implementation. Enablement. AI adoption that delivers real results.</p>
             <a href="#contact" class="cta-button">Get in Touch</a>
         </div>
-        <div class="scroll-indicator">↓ Scroll to explore</div>
+        <div class="scroll-indicator">â Scroll to explore</div>
     </section>
 
     <!-- ============= ABOUT SECTION ============= -->
@@ -778,7 +778,7 @@
         </div>
         <div class="about-content">
             <div class="about-text fade-in">
-                <p>PVT Consulting helps businesses adopt AI that actually works — practical solutions, not hype. We tailor every engagement to <strong>your unique challenges and goals</strong>.</p>
+                <p>PVT Consulting helps businesses adopt AI that actually works â practical solutions, not hype. We tailor every engagement to <strong>your unique challenges and goals</strong>.</p>
                 <p>From strategy through implementation to team enablement, we deliver end-to-end AI transformation that sticks.</p>
             </div>
         </div>
@@ -795,7 +795,7 @@
                     <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 <h3>AI Strategy</h3>
-                <p>We assess where you are, identify high-impact AI opportunities, and build a clear roadmap — from technology selection to change management.</p>
+                <p>We assess where you are, identify high-impact AI opportunities, and build a clear roadmap â from technology selection to change management.</p>
             </div>
 
             <div class="service-card fade-in">
@@ -803,7 +803,7 @@
                     <path d="M12 2C6.48 2 2 6.48 2 12S6.48 22 12 22s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" fill="currentColor"/>
                 </svg>
                 <h3>AI Implementation</h3>
-                <p>Custom AI workflows, chatbots, and automations — built and deployed to integrate seamlessly with your existing systems.</p>
+                <p>Custom AI workflows, chatbots, and automations â built and deployed to integrate seamlessly with your existing systems.</p>
             </div>
 
             <div class="service-card fade-in">
@@ -837,7 +837,7 @@
             <div class="step fade-in">
                 <div class="step-number">3</div>
                 <h3>Implementation</h3>
-                <p>We build, deploy, and integrate — keeping your team in the loop.</p>
+                <p>We build, deploy, and integrate â keeping your team in the loop.</p>
             </div>
 
             <div class="step fade-in">
@@ -860,6 +860,7 @@
             </div>
 
             <form class="contact-form" id="contactForm">
+
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" placeholder="Your name" required>
@@ -880,7 +881,8 @@
                     <textarea id="message" name="message" placeholder="Tell us about your AI goals and challenges..." required></textarea>
                 </div>
 
-                <button type="submit" class="submit-button">Send Message</button>
+                <button type="submit" class="submit-button" id="submitBtn">Send Message</button>
+                <p id="formStatus" style="display:none; margin-top:1rem; font-size:0.95rem; text-align:center;"></p>
             </form>
         </div>
     </section>
@@ -899,7 +901,7 @@
                 <a href="#contact">Contact</a>
             </div>
             <div class="footer-copyright">
-                © 2026 PVT Consulting
+                Â© 2026 PVT Consulting
             </div>
         </div>
     </footer>
@@ -988,20 +990,44 @@
 
         // ============= FORM HANDLING =============
         const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
 
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const company = document.getElementById('company').value;
-            const message = document.getElementById('message').value;
+            const submitBtn = document.getElementById('submitBtn');
+            const formStatus = document.getElementById('formStatus');
 
-            const mailtoLink = `mailto:pedro@pvtconsulting.com?subject=Consultation Request from ${encodeURIComponent(name)}&body=${encodeURIComponent(
-                `Name: ${name}\nEmail: ${email}\nCompany: ${company}\n\nMessage:\n${message}`
-            )}`;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sendingâ¦';
+            formStatus.style.display = 'none';
 
-            window.location.href = mailtoLink;
-            contactForm.reset();
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData);
+
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    formStatus.style.color = '#38bdf8';
+                    formStatus.textContent = 'â Message sent! I\'ll be in touch soon.';
+                    formStatus.style.display = 'block';
+                    contactForm.reset();
+                    submitBtn.textContent = 'Send Message';
+                    submitBtn.disabled = false;
+                } else {
+                    throw new Error(result.message || 'Submission failed');
+                }
+            } catch (err) {
+                formStatus.style.color = '#f87171';
+                formStatus.textContent = 'Something went wrong. Please email pedro@pvtconsulting.com directly.';
+                formStatus.style.display = 'block';
+                submitBtn.textContent = 'Send Message';
+                submitBtn.disabled = false;
+            }
         });
     </script>
 </body>
